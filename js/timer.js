@@ -23,6 +23,32 @@ function reinicio () {
 	Horas.innerHTML = "00";
 
 }
+function inicioDown(seg, min){
+	clearInterval(control)
+	segundos = seg
+	minutos = min
+	if (segundos < 10) { $("#timer").text(minutos + ":0" + segundos) }
+	else {$("#timer").text(minutos + ":" + segundos)}
+}
+
+function countDown(){
+	segundos--
+	if (segundos < 0){
+		segundos = 59
+		minutos--
+	}
+	if (segundos < 10) { $("#timer").text(minutos + ":0" + segundos) }
+	else {$("#timer").text(minutos + ":" + segundos)}
+
+	if(minutos < 0){
+		// llego al final
+		reiniciarPartida()
+	} else {
+		setTimeout("countDown()",1000)
+	}
+
+}
+
 function cronometro () {
 	if (centesimas < 99) {
 		centesimas++;
